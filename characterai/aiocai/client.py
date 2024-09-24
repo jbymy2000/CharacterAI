@@ -62,14 +62,8 @@ class aiocai(Methods, Request):
                 except Exception as e:
                     print(f"Error closing session: {e}")
 
-            if hasattr(self, 'chat1') and self.chat1 is not None:
-                try:
-                    await self.chat1.close()
-                except Exception as e:
-                    print(f"Error closing chat1: {e}")
-
             if hasattr(self, 'connect') and self.connect is not None:
                 try:
-                    await self.connect.close()
+                    await self.connect.ws.transport.close()
                 except Exception as e:
                     print(f"Error closing connect: {e}")
