@@ -57,10 +57,19 @@ class aiocai(Methods, Request):
         async def close(self):
             """If you won't be using the client in the future, please close it"""
             if hasattr(self, 'session') and self.session is not None:
-                await self.session.close()
+                try:
+                    await self.session.close()
+                except Exception as e:
+                    print(f"Error closing session: {e}")
 
             if hasattr(self, 'chat1') and self.chat1 is not None:
-                await self.chat1.close()
+                try:
+                    await self.chat1.close()
+                except Exception as e:
+                    print(f"Error closing chat1: {e}")
 
             if hasattr(self, 'connect') and self.connect is not None:
-                await self.connect.close()
+                try:
+                    await self.connect.close()
+                except Exception as e:
+                    print(f"Error closing connect: {e}")
