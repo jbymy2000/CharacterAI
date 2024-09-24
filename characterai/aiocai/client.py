@@ -52,8 +52,10 @@ class aiocai(Methods, Request):
             return self
 
         async def __aexit__(self, *args):
-            await self.session.close()
+            await self.close()
 
         async def close(self):
             """If you won't be using the client in the future, please close it"""
             await self.session.close()
+            await self.chat1.close()
+            await self.connect.close()
